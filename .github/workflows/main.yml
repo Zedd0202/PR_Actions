@@ -7,8 +7,6 @@ name: PR_Action
 on: 
   issue_comment:
     types: [created, edited]
-  pull_request:
-    types: [created, edited, opened, synchronize, reopened]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
