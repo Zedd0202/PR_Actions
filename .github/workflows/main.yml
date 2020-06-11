@@ -16,7 +16,7 @@ jobs:
   tests:
     # The type of runner that the job will run on
     if: contains(github.event.comment.body, 'run tests')
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
