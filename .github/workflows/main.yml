@@ -17,12 +17,16 @@ jobs:
     # The type of runner that the job will run on
     if: contains(github.event.comment.body, 'run tests')
     runs-on: macOS-latest
+    env:
+          XC_VERSION: ${{ '11.5' }}
+          XC_PROJECT: ${{ 'PRActions.xcodeproj' }}
+          XC_SCHEME: ${{ 'PRActions' }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: 
-          xcodebuild clean test -project PRActions.xcodeproj -scheme PRActions -destination "platform=iOS Simulator,name=iPhone 8" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-
+        - name: Select latest Xcode
+          run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
+        - uses: actions/checkout@v2
+        - name: Run Unit and UI Tests
+          run: /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
