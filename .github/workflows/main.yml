@@ -23,6 +23,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        - run: echo ${{github.ref}}
         - name: Select latest Xcode
           run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
         - uses: actions/checkout@v2
